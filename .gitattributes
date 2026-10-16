@@ -1,0 +1,6 @@
+*.stl binary
+*.py text eol=lf
+*.cpp text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.ini text eol=lf

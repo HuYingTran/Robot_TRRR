@@ -1,0 +1,18 @@
+# Repo chi chua phan mem (app digital twin + firmware).
+# File CAD FreeCAD (*.FCStd, *.FCBak, in/, soft_gripper/) giu o may, khong dua len git.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/digital_twin/
+!/firmware/
+
+# Python
+__pycache__/
+*.pyc
+/digital_twin/programs/
+/digital_twin/*.png
+
+# PlatformIO
+/firmware/.pio/
+/firmware/.vscode/

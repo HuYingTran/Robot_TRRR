@@ -1,0 +1,83 @@
+{
+  "_note": "Thông số digital twin robot TRR (SCARA: Z vít me + J1, J2 dẫn đai + J3 servo MG995 + tay kẹp mềm SG90). Đơn vị mm / độ. Toạ độ lấy từ robot.FCStd ở tư thế home. TCP = tâm mặt phẳng đầu ngón kẹp.",
+
+  "kinematics": {
+    "j1_axis_xy": [0.0, -35.0],
+    "j2_axis_xy": [0.0, -135.0],
+    "j3_axis_xy": [0.1, -213.2],
+    "home_dir_xy": [0.0, -1.0],
+    "tcp_z_home": 12.67,
+    "tool_offset": 0.0
+  },
+
+  "joints": {
+    "z":  {"label": "Z (vít me)",      "unit": "mm", "min": -12,  "max": 150, "home": 0, "vmax": 25},
+    "j1": {"label": "J1 (vai)",        "unit": "°",  "min": -135, "max": 135, "home": 0, "vmax": 90},
+    "j2": {"label": "J2 (khuỷu)",      "unit": "°",  "min": -150, "max": 150, "home": 0, "vmax": 120},
+    "j3": {"label": "J3 (cổ tay MG995)", "unit": "°", "min": -90,  "max": 90,  "home": 0, "vmax": 180},
+    "g":  {"label": "Kẹp (SG90)",      "unit": "°",  "min": 0,    "max": 135, "home": 0, "vmax": 180}
+  },
+
+  "drive": {
+    "steps_per_rev": 200,
+    "microstep": 16,
+    "lead_screw_mm_per_rev": 8.0,
+    "j1_belt_ratio": 3.0,
+    "j2_belt_ratio": 1.8
+  },
+
+  "groups": {
+    "base":     {"color": "#8c9aa8", "parts": ["Body", "Body001", "Body002", "Body003", "Body005", "CREAILTY_4237"]},
+    "screw":    {"color": "#c9c9c9", "parts": ["Body004", "Body008"]},
+    "carriage": {"color": "#e8833a", "parts": ["Body007", "Body009", "Body012", "Body013", "Body021", "CREAILTY_4238"]},
+    "motor_j1": {"color": "#d9d9d9", "parts": ["Body010"]},
+    "link1":    {"color": "#3a7be8", "parts": ["Body011", "Body016", "Body019", "CREAILTY_4239"]},
+    "motor_j2": {"color": "#d9d9d9", "parts": ["Body015"]},
+    "link2":    {"color": "#2fb37a", "parts": ["Body017", "Body018", "MG995"]},
+    "tool":     {"color": "#f07a2a", "parts": ["SoftGripper__Mount_MG995", "SoftGripper__Spacer", "SoftGripper__Horn25_MG995_ref",
+                                           "SoftGripper__Palm", "SoftGripper__Finger_1", "SoftGripper__Finger_2",
+                                           "SoftGripper__Finger_3", "SoftGripper__SG90_ref"]},
+    "spool":    {"color": "#f2c230", "parts": ["SoftGripper__Spool", "SoftGripper__Horn_ref"]}
+  },
+
+  "part_colors": {"CREAILTY_4237": "#3c3c3c", "CREAILTY_4238": "#3c3c3c", "CREAILTY_4239": "#3c3c3c", "MG995": "#1f4fa8",
+                  "SoftGripper__Palm": "#d8dce2", "SoftGripper__Finger_1": "#3ccf6e", "SoftGripper__Finger_2": "#3ccf6e",
+                  "SoftGripper__Finger_3": "#3ccf6e", "SoftGripper__SG90_ref": "#2b59c3", "SoftGripper__Horn25_MG995_ref": "#bfc5cc",
+                  "SoftGripper__Horn_ref": "#f5f5f5"},
+
+  "part_labels": {"Body": "đế link_0", "Body001": "trục dẫn 8 (+X)", "Body002": "trục dẫn 8 (−X)", "Body003": "ổ bi đế",
+                  "Body004": "vít me", "Body005": "tấm trên link_0b", "CREAILTY_4237": "stepper Z",
+                  "Body007": "link_1", "Body009": "link_1 (tấm trên)", "Body012": "ổ bi J1 trên", "Body013": "ổ bi J1 dưới",
+                  "Body021": "đai ốc vít me", "CREAILTY_4238": "stepper J1", "Body010": "puly 20 (J1)",
+                  "Body011": "puly 60", "Body016": "link_2", "Body019": "link_2 (tấm trên)", "CREAILTY_4239": "stepper J2",
+                  "Body015": "puly 20 (J2)"},
+
+  "gripper": {
+    "_note": "Mô phỏng tay kẹp (theo bảng Params trong SoftGripper_SG90.FCStd). g = góc servo SG90: g_open = ngón thẳng, g_closed = khe chặn khép hết (cuộn 14.1 mm cước).",
+    "finger_parts": {"SoftGripper__Finger_1": 90, "SoftGripper__Finger_2": 210, "SoftGripper__Finger_3": 330},
+    "x_in": 26.0, "f_t": 12.0, "f_l": 80.0,
+    "x_hinge": 37.2,
+    "hinge_z": [-23.5, -32.5, -41.5, -50.5, -59.5, -68.5],
+    "hinge_max_deg": 14.82,
+    "g_open": 0, "g_closed": 135,
+    "top_clear_z": -18.0,
+    "center_tol": 6.0,
+    "object": {"diameter": 30, "height": 40, "xy": [80, -160], "color": "#e0457b"}
+  },
+
+  "collision": {
+    "_note": "Vỏ bao tròn xoay của tay kẹp quanh trục J3: [z cục bộ, bán kính]. z cục bộ = 0 tại mặt dưới đế tay kẹp (z global home = gripper_origin_z).",
+    "gripper_origin_z": 92.67,
+    "gripper_profile": [[-80, 38.5], [-9, 38.5], [-9, 45], [6, 45], [6, 35.9], [27.4, 17.9], [30.4, 17.9]],
+    "check_groups": ["base", "screw", "carriage", "motor_j1", "link1", "motor_j2"],
+    "margin": 1.0,
+    "floor_z": 0.0
+  },
+
+  "pulleys": {
+    "Body010": {"axis_xy": [0.0, 30.0]},
+    "Body015": {"axis_xy": [0.0, -85.0]}
+  },
+
+  "serial": {"baud": 115200}
+}
