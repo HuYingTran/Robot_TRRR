@@ -1,11 +1,24 @@
 # Robot_TRRR
 
+![App digital twin](docs/images/app_overview.png)
+
 Robot SCARA tự chế, gồm một trục Z dùng vít me, hai khớp quay J1 và J2 dẫn bằng đai, cổ tay J3 dùng servo MG995 và tay kẹp mềm 3 ngón dùng servo SG90. Repo này chứa phần mềm của robot:
 
 | Thư mục | Nội dung |
 |---|---|
 | [`digital_twin/`](digital_twin/README.md) | App **digital twin** viết bằng Python (PyQt5 + PyVista). App mô phỏng 3D robot và tay kẹp, có động học thuận/ngược, quỹ đạo PTP/LIN, dạy điểm, kiểm tra va chạm, và điều khiển robot thật qua Serial. |
 | [`firmware/`](firmware/README.md) | Firmware **Arduino Nano**, dùng PlatformIO. Firmware điều khiển 3 stepper (A4988) và 2 servo, giao tiếp với app theo cùng một giao thức Serial. |
+
+<table>
+<tr>
+<td width="50%"><img src="docs/images/grasp_closeup.png" alt="Tay kẹp mềm đang kẹp vật trong app"></td>
+<td width="50%"><img src="docs/images/gripper_exploded.png" alt="Tay kẹp mềm 3 ngón, hình nổ"></td>
+</tr>
+<tr>
+<td align="center">Mô phỏng tay kẹp: ngón cong theo góc servo, dừng khi chạm vật</td>
+<td align="center">Tay kẹp mềm 3 ngón: đế nối MG995, đế, ống cuộn cước, ngón chữ T</td>
+</tr>
+</table>
 
 ## 1. Chạy app digital twin
 
@@ -32,6 +45,10 @@ Các tab trong app:
 - **Tay kẹp**: mở/đóng kẹp, đặt vật hình trụ để thử gắp.
 - **Chương trình**: ghi điểm, chạy, lặp, lưu và mở file JSON.
 - **Kết nối robot**: chọn cổng COM hoặc SIM, xem sai lệch giữa lệnh và vị trí thật.
+
+![Tab Tay kẹp](docs/images/app_gripper_tab.png)
+
+![Chạy chương trình gắp–đặt](docs/images/app_program.png)
 
 Thông số robot (kích thước, giới hạn khớp, tốc độ, tỉ số truyền, tay kẹp) nằm trong [`digital_twin/robot_config.json`](digital_twin/robot_config.json).
 
